@@ -1,7 +1,9 @@
-import { UserAgent } from "@/views/userAgent";
+import { headers } from 'next/headers';
+import { UserAgent } from '@/views/userAgent';
 
-const UserAgentRoot = () => {
-  return <UserAgent />;
-};
-
-export default UserAgentRoot;
+export default function UserAgentPage() {
+  const headersList = headers();
+  const userAgent = headersList.get('user-agent') ?? '';
+  
+  return <UserAgent userAgent={userAgent} />;
+}
